@@ -1,0 +1,1 @@
+# Required for Django to load template filters

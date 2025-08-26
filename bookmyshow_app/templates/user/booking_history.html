@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+<style>
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+    .title{
+        color: #ff4784;
+    }
+
+    .price{
+        color: #ff4784;
+    }
+</style>
+
+<div class="container pt-5 mt-5 text-white">
+    <h2 class="mb-4 text-center fw-bold text-white">My Booking History</h2>
+
+    {% if bookings %}
+        {% for booking in bookings %}
+        <div class="row bg-dark border border-primary rounded mb-4 p-3 align-items-center shadow" style="max-width: 900px; margin: 0 auto;">
+            <!-- Left Side -->
+            <div class="col-md-7 d-flex align-items-start">
+                <img src="{{ booking.movie.image1 }}" alt="Movie Image"
+                     class="img-fluid rounded me-3" style="width: 180px; height: 105px; object-fit: cover;">
+
+                <div>
+                    <h5 class="title fw-semibold ">{{ booking.movie.title }}</h5>
+                    <p class="text-white mb-1">{{ booking.movie.time }}</p>
+                    <p class="text-white">{{ booking.show_date|date:"D, F j" }} at {{ booking.show_time|time:"g:i A" }}</p>
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="col-md-5 d-flex flex-column align-items-end justify-content-between text-end mt-3 mt-md-0">
+                <div class="mb-2">
+                    <p class="price fs-5 fw-bold mb-1">${{ booking.price }}</p>
+                    <!-- Optional: Add pay button or info ₹-->
+                </div>
+                <div class="text-white small">
+                    <p class="mb-1"><span class="text-white">Total Tickets:</span> {{ booking.selected_seats|split:","|length }}</p>
+                    <p><span class="text-white">Seat Number:</span> {{ booking.selected_seats }}</p>
+                    <p class="text-success fw-semibold">✔ Payment Success</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning text-center">No bookings found.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background-color: #0d1117;
+        color: #e6edf3;
+        background-image: url('/static/assets/dashboard-bg.jpg');
+        /* Optional */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .edit-movie-container {
+        margin: 80px auto 40px auto;
+        padding: 30px;
+        max-width: 850px;
+        background-color: rgba(18, 18, 18, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    h2,
+    h4 {
+        color: #58a6ff;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    form label {
+        color: #c9d1d9;
+        font-weight: 500;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        background-color: #161b22;
+        color: #e6edf3;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        padding: 6px 10px;
+        width: 100%;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+        border-color: #58a6ff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(88, 166, 255, 0.3);
+    }
+
+    .btn {
+        border-radius: 6px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        padding: 6px 16px;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        background-color: #388bfd;
+        border-color: #388bfd;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #1f6feb;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(31, 111, 235, 0.3);
+    }
+
+    .btn-outline-secondary {
+        color: #c9d1d9;
+        border-color: #6c757d;
+        margin-left: 10px;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #21262d;
+        color: #fff;
+    }
+
+    .btn-success {
+        background-color: #2ea043;
+        border-color: #2ea043;
+    }
+
+    .btn-success:hover {
+        background-color: #238636;
+    }
+
+    .btn-warning {
+        background-color: #d29922;
+        border-color: #d29922;
+        color: #fff;
+    }
+
+    .btn-danger {
+        background-color: #f85149;
+        border-color: #f85149;
+        color: #fff;
+    }
+
+    .table {
+        background-color: #161b22;
+        color: #e6edf3;
+    }
+
+    .table th {
+        background-color: #21262d;
+        border-color: #30363d;
+        color: #58a6ff;
+    }
+
+    .table td {
+        border-color: #30363d;
+    }
+
+    .table-bordered tbody tr:hover {
+        background-color: #21262d;
+    }
+
+    hr {
+        border-top: 1px solid #30363d;
+        margin: 30px 0;
+    }
+
+    .login-btn {
+        background-color: #ff4081;
+        padding: 6px 18px;
+        border-radius: 25px;
+        font-weight: 500;
+    }
+</style>
+
+<div class="container edit-movie-container">
+    <h2>Edit Movie: {{ movie.title }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ movie_form.as_p }}
+        <button type="submit" class="btn btn-primary">Update Movie</button>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+
+    <hr>
+
+    <h4>🎬 All Shows for this Movie</h4>
+    <a href="{% url 'add_show' movie.id %}" class="btn btn-success mb-3">+ Add New Show</a>
+
+    {% if shows %}
+    <div class="table-responsive">
+        <table class="table table-bordered text-center align-middle">
+            <thead>
+                <tr>
+                    <th>Show Date</th>
+                    <th>Show Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for show in shows %}
+                <tr>
+                    <td>{{ show.date }}</td>
+                    <td>{{ show.time }}</td>
+                    <td>
+                        <a href="{% url 'edit_show' show.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_show' show.id %}" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Delete this show?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No shows added yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

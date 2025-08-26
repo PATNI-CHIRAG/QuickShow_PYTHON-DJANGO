@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    .title {
+        color: #ff4784;
+    }
+
+    .price {
+        color: #ff4784;
+    }
+
+    .card-custom {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 12px;
+        transition: transform 0.2s ease;
+    }
+
+    .card-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+</style>
+
+<div class="container pt-5 mt-5 text-white">
+    <h2 class="mb-4 text-center fw-bold text-white">
+        📖 Bookings for <span class="text-info ">{{ user.username }}</span>
+    </h2>
+    <a href="{% url 'all_users' %}" class="btn btn-secondary text-info mb-4">⬅ Back to Users</a>
+
+    {% if bookings %}
+        {% for booking in bookings %}
+        <div class="row card-custom p-3 mb-4 align-items-center shadow border-start border-2 border-info rounded"
+            style="max-width: 1000px; margin: 0 auto; background-color: #1e1e1e; border-radius: 12px;">
+    
+            <!-- Movie Image -->
+            <div class="col-md-3 d-flex justify-content-center">
+                <img src="{{ booking.movie.image1 }}" alt="Movie Poster"
+                class="img-fluid rounded" style="width: 200px; height: 120px; object-fit: cover;">
+            </div>
+
+            <!-- Booking Info -->
+            <div class="col-md-9 mt-3 mt-md-0">
+                <div class="row">
+                    <!-- Left Side -->
+                    <div class="col-md-6">
+                    <h5 class="fw-bold text-light mb-2">{{ booking.movie.title }}</h5>
+                    <p class="mb-1 text-secondary"><strong>Date:</strong> {{ booking.show_date|date:"D, F j, Y" }}</p>
+                    <p class="mb-1 text-secondary"><strong>Time:</strong> {{ booking.show_time|time:"g:i A" }}</p>
+                    <p class="mb-1 text-secondary"><strong>Seats:</strong> {{ booking.selected_seats }}</p>
+                </div>
+
+                <!-- Right Side -->
+                <div class="col-md-6 text-md-end">
+                    <p class="price fs-5 fw-bold mb-1">${{ booking.price }}</p>
+                    <p class="mb-1 text-secondary"><strong>Booked On:</strong> {{ booking.created_at|date:"M d, Y H:i" }}</p>
+                    <p class="mb-1"><span class="text-white">Total Tickets:</span> {{ booking.selected_seats|split:","|length }}</p>  
+                    <p class="text-success fw-semibold">✔ Payment Success</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning text-center">No bookings found for this user.</div>
+    {% endif %}
+</div>
+{% endblock %}

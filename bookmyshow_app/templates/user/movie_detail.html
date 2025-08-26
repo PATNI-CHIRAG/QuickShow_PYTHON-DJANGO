@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        /* background: url("{% static 'assets/backgroundImage.png' %}") no-repeat center center; */
+        background-color: #121212;
+        color: #ffffff;
+        margin: 50px;
+        margin-top: 0;
+    }
+
+    .btn-pink {
+        background-color: #ff4081;
+        color: white;
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-pink:hover {
+        background-color: #e73570;
+        color: white;
+    }
+
+    .title:hover {
+        color: #ff4081;
+    }
+
+    #dateSelect {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cast-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cast-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<div class="row g-4 justify-content-center mt-3">
+
+    <!-- 🔹 Movie Card (repeatable) -->
+    <h2 class="text-white text-center mb-1 pb-1 py-5 mt-4 pb-3">Book Now</h2>
+
+    <div class="container py-5">
+        <div class="row align-items-start g-4">
+            <!-- Movie Image -->
+            <div class="col-md-5 text-center">
+                <img src="{{ movie.image2 }}" alt="Movie Poster" class="img-fluid rounded shadow"
+                    style="height: 400px; object-fit: cover;">
+            </div>
+
+            <!-- Movie Info -->
+            <div class="col-md-7 position-relative">
+                <div class="position-absolute top-0 start-0 bg-primary opacity-25 rounded-circle"
+                    style="width: 200px; height: 200px; filter: blur(100px);"></div>
+                <p class="text-primary fw-semibold">ENGLISH</p>
+                <h1 class="h2 fw-bold">{{ movie.title }}</h1>
+
+                <div class="d-flex align-items-center text-white mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73-3.522-3.356c-.329-.313-.158-.888.283-.95l4.898-.696L8.465.792c.197-.39.73-.39.927 0l2.19 4.327
+                    4.898.696c.441.062.612.637.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8
+                    13.187l-4.389 2.256z" />
+                    </svg>
+                    {{ movie.rate }} IMDB Rating
+                </div>
+
+                <p class="text-secondary">{{ movie.description }}</p>
+
+                <p class="fw-medium mt-2">{{ movie.time }} &bull; {{ movie.genre }} &bull; {{ movie.year }} &bull; ${{movie.price}}</p>
+
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <button class="btn btn-dark d-flex align-items-center gap-2">
+                        <i class="bi bi-play-circle"></i> Watch Trailer
+                    </button>
+                    <a href="#dateSelect" class="btn btn-primary">Buy Tickets</a>
+                    <button class="btn btn-outline-secondary btn-pink rounded-circle p-2">
+                        <i class="bi bi-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Movie Cast Section -->
+<div class="container my-5">
+  <h3 class="text-center mb-4 fw-bold">Your Favorite Cast</h3>
+
+  <div id="castCarousel" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="row justify-content-center g-4">
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/usWnHCzbADijULREZYSJ0qfM00y.jpg" class="cast-img" alt="Milla Jovovich">
+            <p class="mt-2">Milla Jovovich</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/snk6JiXOOoRjPtHU5VMoy6qbd32.jpg" class="cast-img" alt="Dave Bautista">
+            <p class="mt-2">Dave Bautista</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/zmznPrQ9GSZwcOIUT0c3GyETwrP.jpg" class="cast-img" alt="Arly Jover">
+            <p class="mt-2">Arly Jover</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/nTSPtzWu6deZTJtWXHUpACVznY4.jpg" class="cast-img" alt="Amara Okereke">
+            <p class="mt-2">Amara Okereke</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/mGAPQG2OKTgdKFkp9YpvCSqcbgY.jpg" class="cast-img" alt="Fraser James">
+            <p class="mt-2">Fraser James</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="row justify-content-center g-4">
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/lJm89neuiVlYISEqNpGZA5kTAnP.jpg" class="cast-img" alt="Deirdre Mullins">
+            <p class="mt-2">Deirdre Mullins</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/hLN0Ca09KwQOFLZLPIEzgTIbqqg.jpg" class="cast-img" alt="Sebastian Stankiewicz">
+            <p class="mt-2">Sebastian Stankiewicz</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/qY4W0zfGBYzlCyCC0QDJS1Muoa0.jpg" class="cast-img" alt="Tue Lunding">
+            <p class="mt-2">Tue Lunding</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/6Ksb8ANhhoWWGnlM6O1qrySd7e1.jpg" class="cast-img" alt="Jacek Dzisiewicz">
+            <p class="mt-2">Jacek Dzisiewicz</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/yhI4MK5atavKBD9wiJtaO1say1p.jpg" class="cast-img" alt="Ian Hanmore">
+            <p class="mt-2">Ian Hanmore</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="row justify-content-center g-4">
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/uPq4xUPiJIMW5rXF9AT0GrRqgJY.jpg" class="cast-img" alt="Eveline Hall">
+            <p class="mt-2">Eveline Hall</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/usWnHCzbADijULREZYSJ0qfM00y.jpg" class="cast-img" alt="Kamila Klamut">
+            <p class="mt-2">Kamila Klamut</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/uZNtbPHowlBYo74U1qlTaRlrdiY.jpg" class="cast-img" alt="Caoilinn Springall">
+            <p class="mt-2">Caoilinn Springall</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/snk6JiXOOoRjPtHU5VMoy6qbd32.jpg" class="cast-img" alt="Jan Kowalewski">
+            <p class="mt-2">Jan Kowalewski</p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+            <img src="https://image.tmdb.org/t/p/original/zmznPrQ9GSZwcOIUT0c3GyETwrP.jpg" class="cast-img" alt="Pawel Wysocki">
+            <p class="mt-2">Pawel Wysocki</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#castCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle p-2"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#castCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle p-2"></span>
+    </button>
+  </div>
+</div>
+
+        <!-- Date Selection -->
+        <div id="dateSelect" class="mt-5 p-4 border border-primary rounded align-items-center">
+            <h5 class="fw-bold mb-3 text-center">Choose Date & time</h5>
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <button class="btn btn-outline-secondary btn-sm">&laquo;</button>
+                <div class="d-flex gap-3 flex-wrap">
+                    {% for show in shows %}
+                    <button class="btn btn-outline-primary text-center showtime-btn"
+                        data-date="{{ show.date|date:'Y-m-d' }}" data-time="{{ show.time|time:'H:i:s' }}"
+                        style="width: 100px;">
+                        <div class="fw-bold">{{ show.date|date:"M d" }}</div>
+                        <div class="small">{{ show.time|time:"H:i A" }}</div>
+                    </button>
+                    {% endfor %}
+                </div>
+                <button class="btn btn-outline-secondary btn-sm">&raquo;</button>
+            </div>
+            <a href="#seatSelect" class="btn btn-primary">Book Now</a>
+        </div>
+
+
+        <!-- Bootstrap Seat Selection UI Equivalent -->
+        <div id="seatSelect" class="container my-5 d-none">
+            <div class="position-relative text-center">
+
+                <h2 class="fw-semibold mb-4">Select your seat</h2>
+                <img src="{% static 'assets/screenImage.svg' %}" class="img-fluid mb-4" style="width: 800px;"
+                    alt="screen">
+                <div id="alertBox" class="alert alert-warning d-none text-center" role="alert">
+                </div>
+                <p class="text-white small mb-4">SCREEN SIDE</p>
+
+                <!-- Seat Rows -->
+                <div class="d-flex justify-content-center">
+                    <div class="row g-4 justify-content-center text-center">
+                        <!-- Loop over rows A to J -->
+                        {% for row in "ABCDEFGHIJ" %}
+                        <div class="col-12 col-md-6 col-lg-5">
+                            <div class="d-flex flex-wrap justify-content-center gap-2">
+                                {% for col in "12345678" %}
+                                <button class="btn btn-outline-primary p-0 seat-btn" style="width: 40px; height: 40px;">
+                                    {{ row }}{{ col }}
+                                </button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Proceed to Checkout -->
+                <div class="mt-5 d-flex justify-content-center">
+                    <button id="proceedToCheckout" class="btn btn-primary px-5 py-2 d-flex align-items-center gap-2">
+                        Proceed to Checkout
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-arrow-right">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+    let selectedTime = null;
+    let selectedDate = null;
+    let selectedSeats = [];
+
+    // Show alert function
+    function showAlert(message) {
+        const alertBox = document.getElementById('alertBox');
+        alertBox.innerText = message;
+        alertBox.classList.remove('d-none');
+        setTimeout(() => {
+            alertBox.classList.add('d-none');
+        }, 3000);
+    }
+
+
+    // document.getElementById('seatSelect').classList.remove('d-none');
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const seatSection = document.getElementById('seatSelect');
+        seatSection.classList.add('d-none');  // Hide seat section initially
+
+        document.querySelectorAll('.showtime-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.showtime-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                selectedTime = this.getAttribute('data-time');
+                selectedDate = this.getAttribute('data-date');
+                selectedSeats = [];
+
+                // ✅ Show seat section only now
+                seatSection.classList.remove('d-none');
+
+                // Clear previous selections
+                document.querySelectorAll('.seat-btn').forEach(btn => {
+                    btn.classList.remove('btn-primary', 'text-white', 'btn-secondary');
+                    btn.disabled = false;
+                });
+
+                // ✅ Fetch booked seats dynamically from backend
+                fetch(`/get_booked_seats/{{ movie.id }}/${selectedDate}/${selectedTime}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const bookedSeats = data.booked_seats;
+
+                        document.querySelectorAll('.seat-btn').forEach(btn => {
+                            const seat = btn.innerText.trim();
+                            if (bookedSeats.includes(seat)) {
+                                btn.disabled = true;
+                                btn.classList.add('btn-secondary');
+                            }
+                        });
+                    });
+            });
+        });
+
+        // Seat selection logic
+        document.querySelectorAll('.seat-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const seat = this.innerText.trim();
+                const index = selectedSeats.indexOf(seat);
+                if (index === -1) {
+                    selectedSeats.push(seat);
+                    this.classList.add('btn-primary', 'text-white');
+                } else {
+                    selectedSeats.splice(index, 1);
+                    this.classList.remove('btn-primary', 'text-white');
+                }
+            });
+        });
+    });
+
+
+
+    // ✅ Checkout validation
+    document.getElementById('proceedToCheckout').addEventListener('click', function (e) {
+        const isAuthenticated = "{{ user.is_authenticated|yesno:'true,false' }}";
+
+        if (isAuthenticated === "false") {
+            showAlert("⚠️ Please log in to proceed with booking.");
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+            return;
+        }
+
+        if (!selectedTime || selectedSeats.length === 0 || !selectedDate) {
+            showAlert("⚠️ Please select at least one seat and showtime.");
+            return;
+        }
+
+        // ✅ Show seat list in modal
+        document.getElementById("seatList").innerText = selectedSeats.join(', ');
+
+        // ✅ Show checkout modal
+        const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'));
+        checkoutModal.show();
+    });
+
+
+    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const paymentMethod = this.payment_method.value;
+        const csrfToken = '{{ csrf_token }}';
+
+        fetch(`/checkout/{{ movie.id }}/${selectedDate}/${selectedTime}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrfToken,
+            },
+            body: new URLSearchParams({
+                selected_seats: selectedSeats.join(','),
+                payment_method: paymentMethod,
+            })
+        })
+
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // ✅ Redirect to booking history page (where messages.success will show)
+                    window.location.href = "{% url 'booking_history' %}";
+                } else {
+                    showAlert(data.message);  // You already have showAlert() function
+                }
+            });
+    });
+
+</script>
+
+{% endblock %}

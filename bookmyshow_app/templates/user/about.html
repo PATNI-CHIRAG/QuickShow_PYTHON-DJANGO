@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        margin: 50px;
+        margin-top: 0;
+    }
+
+    .about-section {   
+        background: url('https://www.pixelstalk.net/wp-content/uploads/images1/1920x1080-movie-theatre-wallpaper-620x349.jpg') no-repeat center center/cover;
+        min-height: 100vh;
+        padding: 80px 20px;
+        position: relative;
+    }
+    /* https://wallpaperaccess.com/full/3302862.jpg */
+
+    .about-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        /* dark overlay for readability */
+    }
+
+    .about-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .about-title {
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .about-title:hover {
+        transform: scale(1.05);
+        color: #ff4081;
+    }
+
+    .about-subtitle {
+        font-size: 1.4rem;
+        font-weight: 500;
+        opacity: 0.9;
+        transition: transform 0.3s ease;
+    }
+
+    .about-subtitle:hover {
+        color: #f5a403;
+    }
+
+    .about-desc {
+        max-width: 750px;
+        margin: auto;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        opacity: 0.85;
+        transition: color 0.3s ease;
+    }
+
+    .about-desc:hover {
+        color: #00fbff;
+    }
+</style>
+
+<!-- ✅ About Us Section -->
+<section class="about-section text-white d-flex align-items-center">
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold about-title">Welcome to QuickShow</h1>
+        <p class="lead mt-3 about-subtitle">
+            Your one-stop platform for booking movie tickets, exploring the latest releases, and enjoying seamless
+            entertainment.
+        </p>
+        <p class="mt-4 about-desc">
+            At <strong>QuickShow</strong>, we bring cinema closer to you.
+            Discover movies, book tickets effortlessly, and experience a hassle-free way of entertainment.
+            Designed with simplicity and speed in mind, QuickShow ensures that your movie time is always special.
+        </p>
+    </div>
+</section>
+
+{% endblock %}
+
+
