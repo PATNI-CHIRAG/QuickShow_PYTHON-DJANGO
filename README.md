@@ -55,15 +55,15 @@ bookmyshow_project/
 ### 1) Clone the repository
 ```bash
 # Using HTTPS
-git clone https://github.com/PATNI-CHIRAG/PYTHON-DJANGO-SEM-IV_PROJECT.git
-cd bookmyshow_project
+git clone https://github.com/PATNI-CHIRAG/QuickShow_PYTHON.git
+cd QuickShow_PROJECT
 ```
 
 ### 2) Install dependencies
 
 If the repo has `requirements.txt`:
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt 
 ```
 
 If it doesn’t, install just Django:
