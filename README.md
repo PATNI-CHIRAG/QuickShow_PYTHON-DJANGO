@@ -69,8 +69,8 @@ bookmyshow_project/
 ### 1) Clone the repository
 ```bash
 # Using HTTPS
-git clone <YOUR_REPO_URL>.git
-cd <YOUR_REPO_FOLDER>
+git clone https://github.com/PATNI-CHIRAG/PYTHON-DJANGO-SEM-IV_PROJECT.git
+cd PYTHON-DJANGO-SEM-IV_PROJECT
 ```
 
 ### 2) Create & activate a virtual environment
@@ -110,6 +110,7 @@ python manage.py migrate
 ```bash
 python manage.py createsuperuser
 # Follow the prompts for username, email (optional), and password
+# In this project SUPERUSER is my admin 
 ```
 
 ### 6) Run the development server
