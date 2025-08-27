@@ -56,7 +56,7 @@ bookmyshow_project/
 ```bash
 # Using HTTPS
 git clone https://github.com/PATNI-CHIRAG/QuickShow_PYTHON.git
-cd QuickShow_PROJECT
+cd QuickShow_PYTHON
 ```
 
 ### 2) Install dependencies
