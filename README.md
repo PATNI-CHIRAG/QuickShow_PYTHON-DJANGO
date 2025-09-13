@@ -55,7 +55,7 @@ bookmyshow_project/
 ### 1) Clone the repository
 ```bash
 # Using HTTPS
-git clone https://github.com/PATNI-CHIRAG/QuickShow_PYTHON.git
+git clone https://github.com/PATNI-CHIRAG/QuickShow_PYTHON-DJANGO.git
 cd QuickShow_PYTHON
 ```
 
