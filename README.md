@@ -7,8 +7,6 @@ This README is written so that **anyone can clone and run the project from scrat
 
 ## 🎥 Watch Demo
 
-Uploading QuickShow .mp4…
-
 https://github.com/user-attachments/assets/47ee5d98-2e33-47df-9c8b-f9f0341ce0d1
 
 ---
