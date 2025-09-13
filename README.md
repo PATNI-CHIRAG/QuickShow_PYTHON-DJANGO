@@ -1,9 +1,15 @@
+
+https://github.com/user-attachments/assets/47ee5d98-2e33-47df-9c8b-f9f0341ce0d1
 # QuickShow – Movie Ticket Booking (Django)
 
 A simple, student‑friendly **BookMyShow‑like** web app built with **Django**.  
 This README is written so that **anyone can clone and run the project from scratch**, even if they are new to Django.
 
-> Last updated: 2025-08-27
+---
+
+## 🎥 Watch Demo
+
+Uploading QuickShow .mp4…
 
 ---
 
